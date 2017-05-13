@@ -5,29 +5,27 @@
 <div class="debt-section" style="margin-leftft: 4%; margin-right: 1%">
 	<h1> To Get </h1>
 	<div class="debt-list">
+		{% for get in Getlist %}
 		<div> 
 			<div class="info-text"> 
-				<p> 21/05/2017 </p>
-				<p> Someone </p>
-			</div><h2 class="money-text"> ₩100,000 </h2>
+				<p> {{ get.time }} </p>
+				<p> {{ get.giver }} </p>
+			</div><h2 class="money-text"> ₩{{ get.money }} </h2>
 		</div>
+		{% endfor %}
 	</div>
 </div>
 <div class="debt-section" style="background-color: #416b58">
 	<h1> To Pay </h1>
 	<div class="debt-list" style="margin-left: 1%; margin-right: 4%">
+		{% for pay in Paylist %}
 		<div> 
 			<div class="info-text"> 
-				<p> 21/05/2017 </p>
-				<p> Hyoungwook </p>
-			</div><h2 class="money-text"> ₩30,000 </h2>
+				<p> {{ pay.time }} </p>
+				<p> {{ pay.receiver }} </p>
+			</div><h2 class="money-text"> ₩{{ pay.money }} </h2>
 		</div>
-		<div> 
-			<div class="info-text"> 
-				<p> 21/05/2017 </p>
-				<p> Tae Soo </p>
-			</div><h2 class="money-text"> ₩50,000 </h2>
-		</div>
+		{% endfor %}
 	</div>
 </div>
 <div class="button-section">

@@ -1,10 +1,8 @@
 from django.shortcuts import render
 from django.utils import timezone
-from .models import user_data
+from .models import Relation
 from .forms import loginForm
 from django.shortcuts import redirect
-
-# Create your views here
 
 def login_page(request):
 	form = loginForm()
