@@ -33,3 +33,4 @@ for(var i = 0; i <= 2*Math.PI; i += 2*Math.PI/number){
 	ctx.font = "30px Verdana";
 	ctx.fillText(names[i/(2*Math.PI/number)], dis*Math.cos(i) + 380, dis*Math.sin(i) + 410);
 }
+

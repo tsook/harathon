@@ -11,9 +11,25 @@
 	<ul class="navbar">
 		<div class="container">
 			<li> <a href="{% url 'login_page' %}"> GiveGet <i class="fa fa-money" aria-hidden="true"></i></a></li>
-			<li> <a href="#"> About </a></li>
+			<li> <a id="about" href="#"> About </a></li>
 		</div>
 	</ul>
+	<div class="popup">
+		<div class="dialog">
+			<h1> About </h1>
+			<div>
+        		<p>
+		        Add debts and the application will simplify your debt connections.
+		        </p><p>
+				Website made by <a href="">Hyoungwook Jin </a> and <a href=""> Tae Soo Kim</a>.
+		        </p>
+		        <div style="text-align: right">
+		        	<button id="close-about" class="btn btn-default">Close</button>
+		        </div>
+	        </div>
+        </div>
+	</div>
+
 	<div class="container">
 		{% block content %}
 		{% endblock %}
@@ -21,6 +37,8 @@
 
 	<script type="text/javascript" src="{% static 'js/jquery/js/jquery-1.9.0.min.js' %}"></script>
 	<script type="text/javascript" src="{% static 'js/jquery/js/jquery-ui-1.10.0.custom.min.js' %}"></script>
+	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-modal/2.2.6/js/bootstrap-modal.js"></script>
+	<script type="text/javascript" src="{% static 'js/base.js' %}"></script>
 	{% block scripts %}
 	{% endblock %}
 </body>

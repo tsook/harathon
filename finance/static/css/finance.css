@@ -34,6 +34,40 @@ body {
 	background-color: #111;
 }
 
+.popup {
+	height: 100%;
+	width: 100%;
+	display: none;
+ 	position: fixed;
+	z-index: 20;
+}
+
+.dialog {
+	margin: 30px auto;
+	width: 300px;
+	top: 50%;
+	background: #FFF;
+	border-radius: 5px;
+	-webkit-box-shadow:  0px 0px 0px 9999px rgba(0, 0, 0, 0.5);
+	box-shadow:  0px 0px 0px 9999px rgba(0, 0, 0, 0.5);
+}
+
+.dialog h1{
+	border-bottom: solid 1px #d8d8d8;
+	padding: 15px;
+	color: gray;
+	font-size: 25px;
+}
+
+.dialog div {
+	padding: 10px 15px;
+}
+
+.header {
+	border-bottom: solid 1px gray;
+}
+
+
 /* debt list classes */
 .debt-section {
 	margin-top: 5%;
