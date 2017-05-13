@@ -7,5 +7,6 @@ class Relation(models.Model):
     giver = models.CharField(max_length=50)
     receiver = models.CharField(max_length=50)
     money = models.IntegerField()
-    text = models.TextField()
+    text = models.CharField(max_length=100)
     time = models.DateTimeField(default=timezone.now)
+    

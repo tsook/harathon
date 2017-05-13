@@ -34,34 +34,6 @@
 </div>
 
 
-<div class="well add-debt-form" hidden>
-	<form class="form-inline row" id="debt-form">
-		<div class="col-md-4 form-col">
-			<label for="from">Owed to:</label>
-			<label for="to">Owed by:</label>
-			<label for="amount">Amount:</label>
-		</div>
-		<div class="col-md-8 form-col">
-			<div class="form-group">
-				<input type="text" class="form-control" id="to" placeholder="Name">
-			</div>
-			<div class="form-group">
-				<input type="text" class="form-control" id="from" placeholder="Name">
-			</div>
-			<div class="form-group">
-				<div class="input-group">
-					<span class="input-group-addon">₩</span>
-					<input type="number" class="form-control" placeholder="Price" id="amount"/>
-				</div>
-			</div>
-		</div>
-		<div style="text-align: center">
-			<button type="submit" form="debt-form" value="Submit" class="btn" id="submit-btn" style="font-size: 25px; margin-top: 5px">Submit</button>
-		</div>
-	</form>
-</div>
-
-
 {% endblock %}
 
 {% block scripts %}

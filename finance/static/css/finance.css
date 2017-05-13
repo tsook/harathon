@@ -97,11 +97,12 @@ body {
 
 /* add debt elements */
 .add-debt-form{
+	position: relative;
+	top: 120px;
 	font-size: 25px;
 	margin: auto;
-	width: 550px;
+	width: 500px;
 	color: #333;
-	border: solid 2px #c5c5c5;
 }
 
 .form-col{
