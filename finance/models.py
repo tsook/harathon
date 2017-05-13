@@ -3,7 +3,7 @@ from django.utils import timezone
 import json
 
 # Create your models here.
-class User_data(models.Model):
+class user_data(models.Model):
         user = models.ForeignKey('auth.User')
         pay_list = models.TextField()
         get_list = models.TextField()
