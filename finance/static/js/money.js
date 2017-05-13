@@ -1,5 +1,5 @@
-function change(){
-	alert($("#data").value());
+function debt(){
+	$("#debt").append("<li>!</li>")
 }
 
-change();
+debt();
