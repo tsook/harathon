@@ -1,11 +1,4 @@
 $(document).ready(function(){
-<<<<<<< HEAD
-	$(".add-debt").on("click", function(){
-		$(".add-debt-form").show()
-	})
-
-})
-=======
 	$(".add-debt").on("click", showForm);
 })
 
@@ -24,4 +17,3 @@ function hideForm(){
 	$(".add-debt").off("click")
 	$(".add-debt").on("click", showForm)
 }
->>>>>>> f70a7227b64672e15556092e6e77999144df254f
