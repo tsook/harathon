@@ -124,9 +124,29 @@ body {
 	text-align: center;
 }
 
+.debt-entry:hover{
+	box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+#topay .debt-entry:hover{
+	box-shadow: 0 4px 8px 0 rgba(224, 224, 224, 0.2), 0 6px 20px 0 rgba(224, 224, 224, 0.19);
+}
+
 .add-debt{
 	width: 250px;
 	font-size: 25px;
+}
+
+.more-info{
+	border-top: solid 1px #d8d8d8;
+}
+
+.more-info-label{
+	color: gray;
+	font-size: 15px;
+}
+
+.more-info-text {
+	font-size: 15px;
 }
 
 /* add debt elements */
@@ -167,6 +187,7 @@ body {
 #amount {
 	width: 250px;
 }
+
 
 /* login page */
 
