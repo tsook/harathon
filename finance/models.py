@@ -9,4 +9,6 @@ class Relation(models.Model):
     money = models.IntegerField()
     text = models.CharField(max_length=100)
     time = models.DateTimeField(default=timezone.now)
-    
+
+    def __str__(self):
+    	return self.giver + " owes " + self.receiver + " W" + str(self.money)

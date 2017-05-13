@@ -5,22 +5,19 @@ from .forms import loginForm
 from .forms import moneyForm
 from django.shortcuts import redirect
 
-# Create your views here.
-def home_page(request):
-	Alllist = Relation.objects.all()
-	Getlist = Relation.objects.filter(receiver__lte="A")
-	Paylist = Relation.objects.filter(giver__lte="A")
-
-	return render(request, 'finance/home_page.html', {'UserData' : Alllist, 'Getlist' : Getlist, 'Paylist' : Paylist})
-
 def login_page(request):
 	form = loginForm()
 	if request.method == 'POST':
 		form = loginForm(request.POST)
 		print(form)
 		if form.is_valid():
-			data = form.save(commit=False)
-			return redirect('home_page', name=data.name)
+			data = form.cleaned_data
+			name = data["name"]
+			Alllist = Relation.objects.all()
+			Getlist = Relation.objects.filter(receiver=name)
+			Paylist = Relation.objects.filter(giver=name)
+
+			return render(request, 'finance/home_page.html', {'UserData' : Alllist, 'Getlist' : Getlist, 'Paylist' : Paylist, 'balance' : calculateBalance(Getlist, Paylist), 'name': name})
 		else:
 			form = loginForm()
 
@@ -38,3 +35,15 @@ def new_Money(request):
 		else:
 			form = moneyForm()
 	return render(request, 'finance/new_Money.html', {'form': form})
+
+def canvas_test(request):
+	return render(request, 'finance/canvas_test.html', {})
+
+
+def calculateBalance(getlist, paylist):
+	total = 0
+	for entry in getlist:
+		total += entry.money
+	for entry in paylist:
+		total -= entry.money
+	return total

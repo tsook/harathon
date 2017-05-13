@@ -1,5 +1,15 @@
 $(document).ready(function(){
 	$(".add-debt").on("click", showForm);
+	$(".debt-list").on("click", ".debt-entry", function(){
+		var more_info = $(this).find(".more-info")
+		if(more_info.data("hidden")){
+			more_info.show()
+			more_info.data("hidden", false)
+		}else{
+			more_info.hide()
+			more_info.data("hidden", true)
+		}
+	})
 })
 
 function showForm(){
