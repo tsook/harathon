@@ -20,7 +20,7 @@
 		</div>
 	</div>
 </div>
-<div class="debt-section">
+<div class="debt-section" style="background-color: #416b58">
 	<h1> To Pay </h1>
 	<div class="debt-list" style="margin-left: 1%; margin-right: 4%">
 		<div> 
@@ -43,7 +43,7 @@
 
 
 <div class="well add-debt-form" hidden>
-	<form class="form-inline row">
+	<form class="form-inline row" id="debt-form">
 		<div class="col-md-4 form-col">
 			<label for="from">Owed by:</label>
 			<label for="to">Owed to:</label>
@@ -59,11 +59,13 @@
 			<div class="form-group">
 				<div class="input-group">
 					<span class="input-group-addon">₩</span>
-					<input type="text" class="form-control" placeholder="Price" id="amount"/>
+					<input type="number" class="form-control" placeholder="Price" id="amount"/>
 				</div>
 			</div>
 		</div>
-		<button class="btn" id="submit">Submit</button>
+		<div style="text-align: center">
+			<button type="submit" form="debt-form" value="Submit" class="btn" id="submit-btn" style="font-size: 25px; margin-top: 5px">Submit</button>
+		</div>
 	</form>
 </div>
 
