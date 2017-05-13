@@ -13,9 +13,8 @@ class user_data(models.Model):
                 blank=True, null=True)
 
         def __str__(self):
-            return ("user: " + self.user + 
-            		"pay_list: " + self.pay_list +
-            		"get_list: " + self.get_list)
+            return ("pay_list: " + self.pay_list + 
+                    "get_list: " + self.get_list)
 
         def publish(self):
             self.published_date = timezone.now()
