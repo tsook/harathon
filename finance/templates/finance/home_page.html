@@ -1,7 +1,22 @@
 {% extends 'finance/base.html' %}
 {% load staticfiles %}
 
+{% block header %}
+<li> <a>Logged in as: {{ name }}</a></li>
+{% endblock %}
+
 {% block content %}
+<div class="balance-section">
+	<h1 style="font-size: 20px; color: #333"> Net Balance </h1>
+	<div style="border-top: solid 1px gray">
+	{% if balance < 0 %}
+		<h1 style="color: red; font-size: 60px"> ₩{{ balance }}</h1>
+	{% else %}
+		<h1 style="color: green; font-size: 60px"> ₩{{ balance }}</h1>
+	{% endif %}
+	</div>
+</div>
+
 <div class="debt-section"  style="background-color: #416b58; margin-left: 4%; margin-right: 1%">
 	<h1> To Get </h1>
 	<div class="debt-list">
@@ -9,14 +24,14 @@
 		<div class="debt-entry"> 
 			<div class="info-text"> 
 				<p> {{ get.time }} </p>
-				<p> &#8592; {{ get.giver }} </p>
+				<p> <span style="color:green">&#8592;</span> {{ get.giver }} </p>
 			</div><h2 class="money-text"> ₩{{ get.money }} </h2>
 			<div class="more-info row" data-hidden="true" hidden>
 				<div class="col-md-3 more-info-label">
 					<p> Information: </p>
 				</div>
 				<div class="col-md-9 more-info-text">
-					<p> {{ pay.text }} </p>
+					<p> {{ get.text }} </p>
 				</div>
 			</div>
 		</div>
@@ -30,7 +45,7 @@
 		<div class="debt-entry"> 
 			<div class="info-text"> 
 				<p> {{ pay.time }} </p>
-				<p> &#8594; {{ pay.receiver }} </p>
+				<p> <span style="color:red">&#8594;</span> {{ pay.receiver }} </p>
 			</div><h2 class="money-text"> ₩{{ pay.money }} </h2>
 			<div class="more-info row" data-hidden="true" hidden>
 				<div class="col-md-3 more-info-label">

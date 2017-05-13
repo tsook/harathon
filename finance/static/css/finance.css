@@ -64,13 +64,23 @@ body {
 }
 
 .header {
-	border-bottom: solid 1px gray;
+	border-bottom: solid 1px #d8d8d8;
 }
 
 
 /* debt list classes */
+.balance-section {
+	padding: 5px 10px;
+	text-align: center;
+	margin: auto;
+	background-color: white;
+	width: 40%;
+	border-radius: 5px;
+	margin-top: 3%;
+}
+
 .debt-section {
-	margin-top: 5%;
+	margin-top: 2%;
 	width: 45%;
 	display: inline-block;
 	background-color: #333;

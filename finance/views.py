@@ -15,7 +15,7 @@ def login_page(request):
 			Getlist = Relation.objects.filter(receiver=name)
 			Paylist = Relation.objects.filter(giver=name)
 
-			return render(request, 'finance/home_page.html', {'UserData' : Alllist, 'Getlist' : Getlist, 'Paylist' : Paylist})
+			return render(request, 'finance/home_page.html', {'UserData' : Alllist, 'Getlist' : Getlist, 'Paylist' : Paylist, 'balance' : calculateBalance(Getlist, Paylist), 'name': name})
 		else:
 			form = loginForm()
 
@@ -23,3 +23,12 @@ def login_page(request):
 
 def canvas_test(request):
 	return render(request, 'finance/canvas_test.html', {})
+
+
+def calculateBalance(getlist, paylist):
+	total = 0
+	for entry in getlist:
+		total += entry.money
+	for entry in paylist:
+		total -= entry.money
+	return total
