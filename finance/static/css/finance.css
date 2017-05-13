@@ -1,0 +1,59 @@
+body {
+	background-color: #abf0d1;
+}
+
+
+/* navbar class */
+.navbar {
+	border-radius: 0px;
+	list-style-type: none;
+	margin: 0;
+	padding: 0;
+	overflow: hidden;
+	background-color: #333;
+}
+
+.navbar li {
+	float: left;
+}
+
+.navbar li a {
+	display: block;
+	color: white;
+	text-align: center;
+	padding: 14px 16px;
+	text-decoration: none;
+	font-size: 20px;
+}
+
+.navbar li:last-child{
+	float: right;
+}
+
+.navbar li a:hover {
+	background-color: #111;
+}
+
+/* debt list classes */
+.debt-section {
+	margin-top: 5%;
+	width: 45%;
+	display: inline-block;
+	background-color: #333;
+	border-radius: 5px;
+	padding: 5px 20px;
+}
+
+.debt-section h1 {
+	text-align: center;
+	font-size: 40px;
+	color: white;
+}
+
+.debt-list div {
+	margin: 5px 0 5px 0;
+	font-size: 25px;
+	border-radius: 2px;
+	background-color: #cef9e5;
+	padding: 5px;
+}
