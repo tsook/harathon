@@ -42,6 +42,7 @@ body {
 	background-color: #333;
 	border-radius: 5px;
 	padding: 5px 20px;
+	vertical-align: top;
 }
 
 .debt-section h1 {
@@ -111,7 +112,7 @@ body {
 .form-col label{
 	width: 100%;
 	text-align: right;
-	margin: 8px 0;
+	margin: 7px 0;
 }
 
 .form-col .form-group{
@@ -131,4 +132,26 @@ body {
 }
 #amount {
 	width: 250px;
+}
+
+/* login page */
+
+.login-section{
+	margin: 8% auto auto auto;
+	width: 70%;
+	border-radius: 5px;
+	background-color: #73b998;
+	color: white;
+	padding: 3%;
+}
+
+.login-label{
+	margin: auto auto 5% 3%;
+	font-size: 90px;
+}
+
+.login-col label {
+	width: 100%;
+	font-size: 40px;
+	text-align: right;
 }

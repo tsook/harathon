@@ -1,0 +1,26 @@
+{% extends 'finance/base.html' %}
+{% load staticfiles %}
+
+{% block content %}
+<div class="login-section">
+	<h1 class="login-label">Log In</h1>
+	<form method="post" class="login-form row" id="login-form">
+	    {% csrf_token %}
+		<div class="col-md-4 login-col">
+			<label for="name"> Your Name: </label>
+		</div>
+		<div class="col-md-5 login-col">
+			<div class="form-group">
+				<input type="text" class="form-control" id="name" placeholder="Name" style="font-size: 40px; width: 300px; height: 50px">
+			</div>
+		</div>
+		<div class="col-md-3 login-col">
+				<button type="submit" form="login-form" value="Submit" class="btn btn-primary" style="font-size: 25px; width: 150px">Login</button>
+		</div>
+	</form>
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script src="{% static 'js/home_page.js' %}"></script>
+{% endblock %} 
