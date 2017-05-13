@@ -19,3 +19,6 @@ def login_page(request):
 			form = loginForm()
 
 	return render(request, 'finance/login_page.html', {'form': form})
+
+def canvas_test(request):
+	return render(request, 'finance/canvas_test.html', {})
