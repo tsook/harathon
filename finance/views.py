@@ -4,18 +4,15 @@ from .models import user_data
 from .forms import loginForm
 from django.shortcuts import redirect
 
-# Create your views here.
-def home_page(request):
-	UserData = user_data.objects.all()
-	return render(request, 'finance/home_page.html', {'UserData' : UserData})
+# Create your views here
 
 def login_page(request):
 	form = loginForm()
 	if request.method == 'POST':
 		form = loginForm(request.POST)
 		if form.is_valid():
-			data = form.save(commit=False)
-			return redirect('home_page', name=data.name)
+			data = form.cleaned_data
+			return render(request, 'finance/home_page.html', {'name': data["name"]})
 		else:
 			form = loginForm()
 
