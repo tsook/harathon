@@ -1,9 +1,10 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.utils import timezone
 from .models import Relation
 from .forms import loginForm
 from .forms import moneyForm
-from django.shortcuts import redirect
+from django.contrib.auth import login, authenticate
+from django.contrib.auth.forms import UserCreationForm
 
 def login_page(request):
 	form = loginForm()
@@ -16,11 +17,9 @@ def login_page(request):
 			Alllist = Relation.objects.all()
 			Getlist = Relation.objects.filter(receiver=name)
 			Paylist = Relation.objects.filter(giver=name)
-
 			return render(request, 'finance/home_page.html', {'UserData' : Alllist, 'Getlist' : Getlist, 'Paylist' : Paylist, 'balance' : calculateBalance(Getlist, Paylist), 'name': name})
 		else:
 			form = loginForm()
-
 	return render(request, 'finance/login_page.html', {'form': form})
 
 def new_Money(request):
@@ -47,3 +46,17 @@ def calculateBalance(getlist, paylist):
 	for entry in paylist:
 		total -= entry.money
 	return total
+
+def signup(request):
+    if request.method == 'POST':
+        form = UserCreationForm(request.POST)
+        if form.is_valid():
+            form.save()
+            username = form.cleaned_data.get('username')
+            raw_password = form.cleaned_data.get('password1')
+            user = authenticate(username=username, password=raw_password)
+            login(request, user)
+            return redirect('login_page')
+    else:
+        form = UserCreationForm()
+    return render(request, 'signup.html', {'form': form})
