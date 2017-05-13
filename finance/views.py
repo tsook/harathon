@@ -4,14 +4,13 @@ from .models import Relation
 from .forms import loginForm
 from .forms import moneyForm
 from django.shortcuts import redirect
+from django.http import HttpResponse
 
 def login_page(request):
 	form = loginForm()
 	if request.method == 'POST':
 		form = loginForm(request.POST)
-		print(form)
 		if form.is_valid():
-			print(form)
 			data = form.cleaned_data
 			name = data["name"]
 			Alllist = Relation.objects.all()
@@ -37,9 +36,15 @@ def new_Money(request):
 			form = moneyForm()
 	return render(request, 'finance/new_Money.html', {'form': form})
 
+
+def delete(request):
+	if request.GET:
+		Relation.objects.all().filter(pk=request.GET['id']).delete()
+		return HttpResponse('/completed/')
+
+
 def canvas_test(request):
 	return render(request, 'finance/canvas_test.html', {})
-
 
 def calculateBalance(getlist, paylist):
 	total = 0

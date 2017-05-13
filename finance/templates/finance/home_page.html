@@ -21,11 +21,14 @@
 	<h1> To Get </h1>
 	<div class="debt-list">
 		{% for get in Getlist %}
-		<div class="debt-entry"> 
+		<div class="debt-entry" data-id="{{ get.pk }}"> 
 			<div class="info-text"> 
 				<p> {{ get.time }} </p>
 				<p> <span style="color:green">&#8592;</span> {{ get.giver }} </p>
-			</div><h2 class="money-text"> ₩{{ get.money }} </h2>
+			</div><div class="money-delete">
+				<span class="delete-mark"> &#10006; </span>
+				<h2 class="money-text"> ₩{{ get.money }} </h2>
+			</div>
 			<div class="more-info row" data-hidden="true" hidden>
 				<div class="col-md-3 more-info-label">
 					<p> Information: </p>
@@ -42,11 +45,14 @@
 	<h1> To Pay </h1>
 	<div class="debt-list">
 		{% for pay in Paylist %}
-		<div class="debt-entry"> 
+		<div class="debt-entry" data-id="{{ pay.pk }}"> 
 			<div class="info-text"> 
 				<p> {{ pay.time }} </p>
 				<p> <span style="color:red">&#8594;</span> {{ pay.receiver }} </p>
-			</div><h2 class="money-text"> ₩{{ pay.money }} </h2>
+			</div><div class="money-delete">
+				<p class="delete-mark"> &#10006; </p>
+				<h2 class="money-text"> ₩{{ pay.money }} </h2>
+			</div>
 			<div class="more-info row" data-hidden="true" hidden>
 				<div class="col-md-3 more-info-label">
 					<p> Information: </p>
@@ -59,9 +65,7 @@
 		{% endfor %}
 	</div>
 </div>
-<div class="button-section">
-	<button class="btn btn-success add-debt" > Add New Debt</button>
-</div>
+{% endblock %}
 
 {% block scripts %}
 <script src="{% static 'js/home_page.js' %}"></script>

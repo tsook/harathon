@@ -119,12 +119,28 @@ body {
 	font-size: 30px;
 }
 
+.money-delete {
+	width: 50%;
+	display: inline-block;
+	position: relative;
+}
+.delete-mark {
+	padding: 0px 2px;
+	font-size: 12px; 
+	position: absolute;
+	top: 0;
+	right: 0;
+	cursor: pointer;
+}
+.delete-mark:hover {
+	background-color: #c3c3c3;
+}
+
+
 .money-text{
 	font-size: 40px;
 	color: #1bad1b;
 	text-align: right;
-	width: 50%;
-	display: inline-block;
 }
 
 .button-section{
