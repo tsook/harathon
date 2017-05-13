@@ -9,6 +9,7 @@ def login_page(request):
 	if request.method == 'POST':
 		form = loginForm(request.POST)
 		if form.is_valid():
+			print(form)
 			data = form.cleaned_data
 			name = data["name"]
 			Alllist = Relation.objects.all()
