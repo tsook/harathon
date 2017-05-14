@@ -32,14 +32,18 @@ $.ajax({
 				edge = edge.split("-")
 				var from = edge[0]
 				var to = edge[1]
-				makeLine(nodes.indexOf(from), nodes.indexOf(to))
+				if(from == name){
+					makeLine(nodes.indexOf(from), nodes.indexOf(to), "get")
+				}else{
+					makeLine(nodes.indexOf(from), nodes.indexOf(to), "give")
+				}
 			}
 			makeCircles(nodes)
 		})
     }
 })
 
-function makeLine(from, to){
+function makeLine(from, to, type){
 	var canvas = document.getElementById("myCanvas");
 	var ctx = canvas.getContext("2d")
 	var fromAngle = 2*Math.PI/number * from
@@ -47,7 +51,11 @@ function makeLine(from, to){
 	ctx.moveTo(dis*Math.cos(fromAngle) + 300, dis*Math.sin(fromAngle) + 200)
 	ctx.lineTo(dis*Math.cos(toAngle) + 300, dis*Math.sin(toAngle) + 200)
 	ctx.lineWidth = 5;
-	ctx.strokeStyle = "#244e3b"
+	if(type == "give"){
+		ctx.strokeStyle = "#e54535"
+	}else{
+		ctx.strokeStyle = "#48804d"
+	}
 	ctx.stroke();
 }
 
