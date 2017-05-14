@@ -16,7 +16,6 @@ $(document).ready(function(){
 		if(confirm("Are you sure you want to delete this?")){
 			var parent = $(this).parent().parent()
 			var id = parent.data("id")
-			console.log(id)
 			$.ajax({
 				type: "GET",
 				url: 'delete',
@@ -28,6 +27,17 @@ $(document).ready(function(){
 	            	location.reload()
 	            }
 			})
+		}
+	})
+	$("#change_view").on("click", function(){
+		if($("#change_view").data("status") == "list"){
+			$("#all-debt").hide()
+			$("#graph-view").show()
+			$("#change-view").data("status", "graph")
+		}else{
+			$("#all-debt").show()
+			$("#graph-view").hide()
+			$("#change-view").data("status", "list")
 		}
 	})
 
