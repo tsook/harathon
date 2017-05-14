@@ -77,9 +77,13 @@ def getNetBalanceList(data):
 		else:
 			result[entry.receiver] = entry.money
 
+	toDelete = []
 	for key in result.keys():
 		if result[key] == 0:
-			del result[key]
+			toDelete.append(key)
+
+	for key in toDelete:
+		del result[key]
 
 	return result
 
