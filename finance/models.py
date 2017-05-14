@@ -14,7 +14,7 @@ class Relation(models.Model):
     time = models.DateTimeField(default=timezone.now)
 
     def __str__(self):
-    	return self.giver + " owes " + self.receiver + " W" + str(self.money)
+    	return "[" + self.giver + " owes " + self.receiver + " W" + str(self.money) + " because " + self.text + "] "
 
 class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)

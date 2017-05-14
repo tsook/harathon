@@ -23,7 +23,7 @@
 		{% for get in Getlist %}
 		<div class="debt-entry" data-id="{{ get.pk }}"> 
 			<div class="info-text"> 
-				<p> {{ get.time }} </p>
+				<p> Last Update: {{ get.time }} </p>
 				<p> <span style="color:green">&#8592;</span> {{ get.giver }} </p>
 			</div><div class="money-delete">
 				<span class="delete-mark"> &#10006; </span>
@@ -47,7 +47,7 @@
 		{% for pay in Paylist %}
 		<div class="debt-entry" data-id="{{ pay.pk }}"> 
 			<div class="info-text"> 
-				<p> {{ pay.time }} </p>
+				<p> Last Update: {{ pay.time }} </p>
 				<p> <span style="color:red">&#8594;</span> {{ pay.receiver }} </p>
 			</div><div class="money-delete">
 				<p class="delete-mark"> &#10006; </p>
