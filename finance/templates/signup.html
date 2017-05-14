@@ -10,6 +10,7 @@
   <form method="post" class="login-form row" id="signup-form">
       {% csrf_token %}
     <div class="col-md-4 login-col">
+      <label for="group_id"> Group ID: </label>
       <label for="name"> Your Name: </label>
       <label for="passwrd"> Password: </label>
       <label for="passwrd_confirm"> Confirm: </label>
@@ -18,6 +19,9 @@
       {% endif %}
     </div>
     <div class="col-md-5 login-col">
+      <div class="form-group">
+        <input type="text" class="form-control" name="group_id" placeholder="ID" style="font-size: 40px; width: 40%; height: 50px" maxlength="5"/>
+      </div>
       <div class="form-group">
         <input type="text" class="form-control" name="username" placeholder="Name" style="font-size: 40px; width: 150%; height: 50px"/>
       </div>

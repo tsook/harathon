@@ -1,8 +1,10 @@
 from django import forms
-from .models import Relation
+from .models import Relation, Member
 
-class loginForm(forms.Form):
-    name = forms.CharField(label='Your name', max_length=15)
+class memberForm(forms.ModelForm):
+	class Meta:
+		model = Member
+		fields = ('username', 'group_id')
 
 class moneyForm(forms.ModelForm):
 	class Meta:

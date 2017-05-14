@@ -15,14 +15,12 @@ $.ajax({
     success: function(data){
     	for(var i = 0; i < data.length; i++){
     		entry = data[i]
-    		if(entry.fields.giver == name || entry.fields.receiver == name){
-	    		if(!nodes.includes(entry.fields.giver))
-	    			nodes.push(entry.fields.giver)
-	    		if(!nodes.includes(entry.fields.receiver))
-	    			nodes.push(entry.fields.receiver)
-	    		if(!edges.includes(entry.fields.receiver + "-" + entry.fields.giver))
-	    			edges.push(entry.fields.receiver+"-"+entry.fields.giver)
-    		}
+	    	if(!nodes.includes(entry.fields.giver))
+	    		nodes.push(entry.fields.giver)
+	    	if(!nodes.includes(entry.fields.receiver))
+	    		nodes.push(entry.fields.receiver)
+	    	if(!edges.includes(entry.fields.receiver + "-" + entry.fields.giver))
+	    		edges.push(entry.fields.receiver+"-"+entry.fields.giver)
     	}
     	number = nodes.length
 

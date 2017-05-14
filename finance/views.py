@@ -1,8 +1,7 @@
 from django.shortcuts import render, redirect
 from django.utils import timezone
-from .models import Relation
-from .forms import loginForm
-from .forms import moneyForm
+from .models import Relation, Member
+from .forms import moneyForm, memberForm
 from django.shortcuts import redirect
 from django.http import HttpResponse
 from django.contrib.auth import login, authenticate
@@ -11,9 +10,10 @@ from django.core import serializers
 
 def home_page(request):
 	name=request.user.username
-	Alllist = Relation.objects.all()
-	Getlist = Relation.objects.filter(receiver=name)
-	Paylist = Relation.objects.filter(giver=name)
+	groupid = Member.objects.get(username=name).group_id
+	Alllist = Relation.objects.filter(group_id=groupid)
+	Getlist = Alllist.filter(receiver=name)
+	Paylist = Alllist.filter(giver=name)
 	return render(request, 'finance/home_page.html', {'UserData' : Alllist, 'Getlist' : Getlist, 'Paylist' : Paylist, 'balance' : calculateBalance(Getlist, Paylist), 'name': name})
 
 def new_Money(request):
@@ -24,6 +24,7 @@ def new_Money(request):
 		if form.is_valid():
 			data = form.save(commit=False)
 			data.time = timezone.now()
+			data.group_id = Member.objects.get(username=name).group_id
 			data.save()
 			return redirect('home_page')
 		else:
@@ -38,7 +39,8 @@ def delete(request):
 def get_list(request):
 	if request.GET:
 		name = request.user.username
-		json_data = serializers.serialize('json', Relation.objects.all());
+		groupid = Member.objects.get(username=name).group_id
+		json_data = serializers.serialize('json', Relation.objects.filter(group_id=groupid));
 		return HttpResponse(json_data, content_type="application/json")
 
 def calculateBalance(getlist, paylist):
@@ -50,9 +52,13 @@ def calculateBalance(getlist, paylist):
 	return total
 
 def signup(request):
+    memForm = memberForm()
     if request.method == 'POST':
+        memForm = memberForm(request.POST)
         form = UserCreationForm(request.POST)
-        if form.is_valid():
+        if form.is_valid() and memForm.is_valid():
+            data = memForm.save(commit=False)
+            data.save()
             form.save()
             username = form.cleaned_data.get('username')
             raw_password = form.cleaned_data.get('password1')
@@ -64,8 +70,10 @@ def signup(request):
     return render(request, 'signup.html', {'form': form})
 
 def simplify(request):
-	Alllist = Relation.objects.all()
-	simplifyGraph(getNetBalanceList(Alllist))
+	name = request.user.username
+	groupid = Member.objects.get(username=name).group_id
+	Alllist = Relation.objects.filter(group_id=groupid)
+	simplifyGraph(getNetBalanceList(Alllist), groupid)
 	return redirect('home_page')
 
 def getNetBalanceList(data):
@@ -90,20 +98,20 @@ def getNetBalanceList(data):
 
 	return result
 
-def simplifyGraph(data):
-	Relation.objects.all().delete()
+def simplifyGraph(data, groupid):
+	Relation.objects.filter(group_id=groupid).delete()
 	while data:
 		key_max = max(data.keys(), key=(lambda k: data[k]))
 		key_min = min(data.keys(), key=(lambda k: data[k]))
 		if data[key_max] > abs(data[key_min]):
 			data[key_max] = data[key_max] + data[key_min]
-			Relation.objects.create(giver=key_min, receiver=key_max, money=abs(data[key_min]), text="Combined", time=timezone.now())
+			Relation.objects.create(giver=key_min, receiver=key_max, money=abs(data[key_min]), text="Combined", time=timezone.now(), group_id=groupid)
 			del data[key_min]
 		elif abs(data[key_min]) > data[key_max]:
 			data[key_min] = data[key_max] + data[key_min]
-			Relation.objects.create(giver=key_min, receiver=key_max, money=data[key_max], text="Combined", time=timezone.now())
+			Relation.objects.create(giver=key_min, receiver=key_max, money=data[key_max], text="Combined", time=timezone.now(), group_id=groupid)
 			del data[key_max]
 		else:
-			Relation.objects.create(giver=key_min, receiver=key_max, money=data[key_max], text="Combined", time=timezone.now())
+			Relation.objects.create(giver=key_min, receiver=key_max, money=data[key_max], text="Combined", time=timezone.now(), group_id=groupid)
 			del data[key_max]
 			del data[key_min]
