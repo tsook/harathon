@@ -1,13 +1,6 @@
 {% extends 'finance/base.html' %}
 
 {% block content %}
-<!--
-	<form method = "POST">
-		{% csrf_token %}
-		{{ form.as_p }}
-		<button type="submit">Save</button>
-	</form>
--->
 <div class="add-debt-form">
 	<form method = "POST" class="form-inline row" id="debt-form">
 		{% csrf_token %}
@@ -19,25 +12,23 @@
 		</div>
 		<div class="col-md-8 form-col">
 			<div class="form-group">
-				<input name="receiver" type="text" class="form-control" placeholder="Name"/>
+				<input name="receiver" type="text" class="form-control" placeholder="Name" style="width: 100%"/>
 			</div>
 			<div class="form-group">
-				<input name="giver" type="text" class="form-control" placeholder="Name"/>
+				<input name="giver" type="text" class="form-control" placeholder="Name" style="width: 100%"/>
 			</div>
 			<div class="form-group">
 				<div class="input-group">
 					<span class="input-group-addon">₩</span>
-					<input name="money" type="number" size="16" class="form-control" placeholder="Price" style="width:260px"/>
+					<input name="money" type="number" size="16" class="form-control" placeholder="Price" style="width:84%"/>
 				</div>
 			</div>
 			<div class="form-group">
 				<div class="input-group">
-					<textarea name="text" placeholder="Why did you owe money?" cols="26"></textarea>
+					<textarea name="text" placeholder="Why did you owe money?" cols="26" style="width:87%"></textarea>
 				</div>
 			</div>
-		</div>
-		<div style="text-align: center">
-			<button type="submit" value="Submit" class="btn" style="font-size: 25px; margin-top: 5px">Submit</button>
+			<button type="submit" value="Submit" class="btn" style="font-size: 25px; margin-top: 5px; width: 87%">Submit</button>
 		</div>
 	</form>
 </div>

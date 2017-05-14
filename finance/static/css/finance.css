@@ -209,6 +209,7 @@ body {
 	background-color: #73b998;
 	color: white;
 	padding: 3%;
+	vertical-align: text-top;
 }
 
 .login-label{

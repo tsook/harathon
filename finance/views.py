@@ -6,21 +6,13 @@ from .forms import moneyForm
 from django.contrib.auth import login, authenticate
 from django.contrib.auth.forms import UserCreationForm
 
-def login_page(request):
-	form = loginForm()
-	if request.method == 'POST':
-		form = loginForm(request.POST)
-		print(form)
-		if form.is_valid():
-			data = form.cleaned_data
-			name = data["name"]
-			Alllist = Relation.objects.all()
-			Getlist = Relation.objects.filter(receiver=name)
-			Paylist = Relation.objects.filter(giver=name)
-			return render(request, 'finance/home_page.html', {'UserData' : Alllist, 'Getlist' : Getlist, 'Paylist' : Paylist, 'balance' : calculateBalance(Getlist, Paylist), 'name': name})
-		else:
-			form = loginForm()
-	return render(request, 'finance/login_page.html', {'form': form})
+
+def home_page(request):
+	name=request.user.username
+	Alllist = Relation.objects.all()
+	Getlist = Relation.objects.filter(receiver=name)
+	Paylist = Relation.objects.filter(giver=name)
+	return render(request, 'finance/home_page.html', {'UserData' : Alllist, 'Getlist' : Getlist, 'Paylist' : Paylist, 'balance' : calculateBalance(Getlist, Paylist), 'name': name})
 
 def new_Money(request):
 	form = moneyForm()
