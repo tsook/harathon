@@ -43,10 +43,6 @@ def get_list(request):
 		json_data = serializers.serialize('json', Relation.objects.all());
 		return HttpResponse(json_data, content_type="application/json")
 
-def graph_view(request):
-	user_name = request.user.username
-	return render(request, 'finance/graph_view.html', {'user_name': user_name})
-
 def calculateBalance(getlist, paylist):
 	total = 0
 	for entry in getlist:

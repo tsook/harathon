@@ -10,5 +10,5 @@
 
 {% block scripts %}
 <script src="{% static 'js/canvastest.js' %}"></script>
-<script type="text/javascript"> var name = {{ user_name }}
+<script type="text/javascript"> var user_name = "{{ user_name }}" </script>
 {% endblock %}

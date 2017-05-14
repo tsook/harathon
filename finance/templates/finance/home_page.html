@@ -18,56 +18,65 @@
 	</div>
 </div>
 
-<div class="debt-section"  style="background-color: #416b58; margin-left: 4%; margin-right: 1%">
-	<h1> To Get </h1>
-	<div class="debt-list">
-		{% for get in Getlist %}
-		<div class="debt-entry" data-id="{{ get.pk }}"> 
-			<div class="info-text"> 
-				<p> Last Update: {{ get.time }} </p>
-				<p> <span style="color:green">&#8592;</span> {{ get.giver }} </p>
-			</div><div class="money-delete">
-				<span class="delete-mark"> &#10006; </span>
-				<h2 class="money-text"> ₩{{ get.money }} </h2>
-			</div>
-			<div class="more-info row" data-hidden="true" hidden>
-				<div class="col-md-3 more-info-label">
-					<p> Information: </p>
+<button class="btn btn-default" id="change-view" data-status="list">Change View</button>
+<div id="all-debt">
+	<div class="debt-section"  style="background-color: #416b58; margin-left: 4%; margin-right: 1%">
+		<h1> To Get </h1>
+		<div class="debt-list">
+			{% for get in Getlist %}
+			<div class="debt-entry" data-id="{{ get.pk }}"> 
+				<div class="info-text"> 
+					<p> Last Update: {{ get.time }} </p>
+					<p> <span style="color:green">&#8592;</span> {{ get.giver }} </p>
+				</div><div class="money-delete">
+					<span class="delete-mark"> &#10006; </span>
+					<h2 class="money-text"> ₩{{ get.money }} </h2>
 				</div>
-				<div class="col-md-9 more-info-text">
-					<p> {{ get.text }} </p>
+				<div class="more-info row" data-hidden="true" hidden>
+					<div class="col-md-3 more-info-label">
+						<p> Information: </p>
+					</div>
+					<div class="col-md-9 more-info-text">
+						<p> {{ get.text }} </p>
+					</div>
 				</div>
 			</div>
+			{% endfor %}
 		</div>
-		{% endfor %}
+	</div>
+	<div class="debt-section" id="topay" style="margin-left: 1%">
+		<h1> To Pay </h1>
+		<div class="debt-list">
+			{% for pay in Paylist %}
+			<div class="debt-entry" data-id="{{ pay.pk }}"> 
+				<div class="info-text"> 
+					<p> Last Update: {{ pay.time }} </p>
+					<p> <span style="color:red">&#8594;</span> {{ pay.receiver }} </p>
+				</div><div class="money-delete">
+					<p class="delete-mark"> &#10006; </p>
+					<h2 class="money-text" style="color:red"> ₩{{ pay.money }} </h2>
+				</div>
+				<div class="more-info row" data-hidden="true" hidden>
+					<div class="col-md-3 more-info-label">
+						<p> Information: </p>
+					</div>
+					<div class="col-md-9 more-info-text">
+						<p> {{ pay.text }} </p>
+					</div>
+				</div>
+			</div>
+			{% endfor %}
+		</div>
 	</div>
 </div>
-<div class="debt-section" id="topay" style="margin-left: 1%">
-	<h1> To Pay </h1>
-	<div class="debt-list">
-		{% for pay in Paylist %}
-		<div class="debt-entry" data-id="{{ pay.pk }}"> 
-			<div class="info-text"> 
-				<p> Last Update: {{ pay.time }} </p>
-				<p> <span style="color:red">&#8594;</span> {{ pay.receiver }} </p>
-			</div><div class="money-delete">
-				<p class="delete-mark"> &#10006; </p>
-				<h2 class="money-text" style="color:red"> ₩{{ pay.money }} </h2>
-			</div>
-			<div class="more-info row" data-hidden="true" hidden>
-				<div class="col-md-3 more-info-label">
-					<p> Information: </p>
-				</div>
-				<div class="col-md-9 more-info-text">
-					<p> {{ pay.text }} </p>
-				</div>
-			</div>
-		</div>
-		{% endfor %}
-	</div>
+<div id="graph-view" hidden>
+	<canvas id="myCanvas" width="800" height="800">
+	</canvas>
 </div>
 {% endblock %}
 
 {% block scripts %}
 <script src="{% static 'js/home_page.js' %}"></script>
+<script src="{% static 'js/canvastest.js' %}"></script>
+<script type="text/javascript"> var user_name = "{{ user_name }}" </script>
 {% endblock %}

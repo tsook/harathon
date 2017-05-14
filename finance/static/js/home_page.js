@@ -29,6 +29,17 @@ $(document).ready(function(){
 			})
 		}
 	})
+	$("#change_view").on("click", function(){
+		if($("#change_view").data("status") == "list"){
+			$("#all-debt").hide()
+			$("#graph-view").show()
+			$("#change-view").data("status", "graph")
+		}else{
+			$("#all-debt").show()
+			$("#graph-view").hide()
+			$("#change-view").data("status", "list")
+		}
+	})
 
 })
 
