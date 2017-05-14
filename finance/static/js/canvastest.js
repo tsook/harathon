@@ -1,5 +1,5 @@
 var dis = 100
-var radius = 20
+var radius = 25
 var nodes = [];
 var edges = [];
 var number;
@@ -44,8 +44,8 @@ function makeLine(from, to){
 	var ctx = canvas.getContext("2d")
 	var fromAngle = 2*Math.PI/number * from
 	var toAngle = 2*Math.PI/number * to
-	ctx.moveTo(dis*Math.cos(fromAngle) + 250, dis*Math.sin(fromAngle) + 250)
-	ctx.lineTo(dis*Math.cos(toAngle) + 250, dis*Math.sin(toAngle) + 250)
+	ctx.moveTo(dis*Math.cos(fromAngle) + 300, dis*Math.sin(fromAngle) + 300)
+	ctx.lineTo(dis*Math.cos(toAngle) + 300, dis*Math.sin(toAngle) + 300)
 	ctx.lineWidth = 5;
 	ctx.strokeStyle = "#244e3b"
 	ctx.stroke();
@@ -58,13 +58,13 @@ function makeCircles(nodes){
 		var angle = i * 2*Math.PI/nodes.length
 		ctx.strokeStyle = "#326b51"
 		ctx.beginPath()
-		ctx.arc(dis*Math.cos(angle) + 250, dis*Math.sin(angle) + 250, radius, 0, 2*Math.PI)
+		ctx.arc(dis*Math.cos(angle) + 300, dis*Math.sin(angle) + 300, radius, 0, 2*Math.PI)
 		ctx.fillStyle = "#9cd4ba"
 		ctx.fill()
 		ctx.stroke()
 		ctx.fillStyle= "#326b51"
 		ctx.font = "30px Verdana";
-		ctx.fillText(nodes[i][0], dis*Math.cos(angle) + 240, dis*Math.sin(angle) + 260);
+		ctx.fillText(nodes[i][0], dis*Math.cos(angle) + 290, dis*Math.sin(angle) + 310);
 	}	
 }
 

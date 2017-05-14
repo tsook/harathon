@@ -248,5 +248,6 @@ body {
 }
 #change-view{
 	text-align: middle;
-	width: 200px;
+	width: 250px;
+	font-size: 30px;
 }

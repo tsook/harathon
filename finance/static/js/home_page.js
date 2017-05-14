@@ -31,12 +31,12 @@ $(document).ready(function(){
 	})
 	$("#change-view").on("click", function(){
 		if($("#change-view").data("status") == "list"){
-			$("#all-debt").hide()
 			$("#graph-view").show()
+			$("#change-view").html("Hide Graph")
 			$("#change-view").data("status", "graph")
 		}else{
-			$("#all-debt").show()
 			$("#graph-view").hide()
+			$("#change-view").html("Hide Graph")
 			$("#change-view").data("status", "list")
 		}
 	})
