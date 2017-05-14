@@ -9,22 +9,14 @@ from django.contrib.auth import login, authenticate
 from django.contrib.auth.forms import UserCreationForm
 from operator import attrgetter
 
-def login_page(request):
-	form = loginForm()
-	if request.method == 'POST':
-		form = loginForm(request.POST)
-		if form.is_valid():
-			data = form.cleaned_data
-			name = data["name"]
-			Alllist = Relation.objects.all()
-			simplifyGraph(getNetBalanceList(Alllist))
-			Alllist = Relation.objects.all()
-			Getlist = Relation.objects.filter(receiver=name)
-			Paylist = Relation.objects.filter(giver=name)
-			return render(request, 'finance/home_page.html', {'UserData' : Alllist, 'Getlist' : Getlist, 'Paylist' : Paylist, 'balance' : calculateBalance(Getlist, Paylist), 'name': name})
-		else:
-			form = loginForm()
-	return render(request, 'finance/login_page.html', {'form': form})
+def home_page(request):
+	name=request.user.username
+	Alllist = Relation.objects.all()
+	simplifyGraph(getNetBalanceList(Alllist))
+	Allist = Relation.objects.all()
+	Getlist = Relation.objects.filter(receiver=name)
+	Paylist = Relation.objects.filter(giver=name)
+	return render(request, 'finance/home_page.html', {'UserData' : Alllist, 'Getlist' : Getlist, 'Paylist' : Paylist, 'balance' : calculateBalance(Getlist, Paylist), 'name': name})
 
 def new_Money(request):
 	form = moneyForm()
@@ -38,7 +30,6 @@ def new_Money(request):
 		else:
 			form = moneyForm()
 	return render(request, 'finance/new_Money.html', {'form': form})
-
 
 def delete(request):
 	if request.GET:
@@ -70,6 +61,7 @@ def signup(request):
     else:
         form = UserCreationForm()
     return render(request, 'signup.html', {'form': form})
+
 
 class Person:
 	def __init__(self, name, balance, info):

@@ -1,8 +1,28 @@
+{% extends 'finance/base.html' %}
+{% load staticfiles %}
+
 {% block content %}
-  <h2>Login</h2>
-  <form method="post">
-    {% csrf_token %}
-    {{ form.as_p }}
-    <button type="submit">Login</button>
-  </form>
+<div class="login-section" style="vertical-align: bottom;">
+	<form method="post" class="login-form row" id="login-form">
+	    {% csrf_token %}
+		<div class="col-md-4 login-col">
+			<label for="name"> Your Name: </label>
+			<label for="passwrd"> Password: </label>
+			{% if form.errors %}
+			<label><font style="font-size: 25px; color: Red">Wrong ID or PW</font></label>
+			{% endif %}
+		</div>
+		<div class="col-md-5 login-col">
+			<div class="form-group">
+				<input type="text" class="form-control" name="username" placeholder="Name" style="font-size: 40px; width: 120%; height: 50px"/>
+			</div>
+			<div class="form-group">
+				<input type="text" class="form-control" name="password" placeholder="Password" style="font-size: 40px; width: 120%; height: 50px"/>
+			</div>
+			<div>
+				<button type="submit" form="login-form" value="Submit" class="btn btn-primary" style="font-size: 25px; width: 120%">Login</button>
+			</div>
+		</div>
+	</form>
+</div>
 {% endblock %}

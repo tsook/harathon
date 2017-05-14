@@ -8,5 +8,9 @@ class moneyForm(forms.ModelForm):
 	class Meta:
 		model = Relation
 		fields = ('giver', 'receiver', 'money', 'text',)
-	
-
+'''
+class profileForm(forms.ModelForm):
+	class Meta:
+		model = Profile
+		fields = ('username', 'passwrd')
+'''
