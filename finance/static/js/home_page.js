@@ -36,7 +36,7 @@ $(document).ready(function(){
 			$("#change-view").data("status", "graph")
 		}else{
 			$("#graph-view").hide()
-			$("#change-view").html("Hide Graph")
+			$("#change-view").html("Show Graph")
 			$("#change-view").data("status", "list")
 		}
 	})
