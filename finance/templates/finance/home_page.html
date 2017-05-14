@@ -79,6 +79,6 @@
 
 {% block scripts %}
 <script src="{% static 'js/home_page.js' %}"></script>
+<script type="text/javascript"> var name = "{{name}}"</script>
 <script src="{% static 'js/canvastest.js' %}"></script>
-<script type="text/javascript"> var user_name = "{{ user_name }}" </script>
 {% endblock %}
