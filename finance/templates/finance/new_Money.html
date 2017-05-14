@@ -1,36 +1,46 @@
 {% extends 'finance/base.html' %}
 
+{% block header %}
+<li> <a href="{% url 'new_Money' %}"> New Money </a></li>
+<li style="float: right"><a href="{% url 'logout' %}"> Logout: {{ name }}</a></li>
+{% endblock %}
+
 {% block content %}
-<div class="add-debt-form">
-	<form method = "POST" class="form-inline row" id="debt-form">
-		{% csrf_token %}
-		<div class="col-md-4 form-col">
-			<label for="receiver">Owed to:</label>
-			<label for="giver">Owed by:</label>
-			<label for="money">Amount:</label>
-			<label for="text">For?:</label>
-		</div>
-		<div class="col-md-8 form-col">
-			<div class="form-group">
-				<input name="receiver" type="text" class="form-control" placeholder="Name" style="width: 100%"/>
+<div class="center add-debt-form" style="position: relative; top: 75px">
+	<div class="login-section" style="background-color: #60ae85; width: 100%">
+		<form method = "POST" class="form-inline row" id="debt-form">
+			{% csrf_token %}
+			<div class="col-md-4 form-col">
+				<label for="receiver">Owed to:</label>
+				<label for="giver">Owed by:</label>
+				<label for="money">Amount:</label>
+				<label for="text">For?:</label>
+				{% if form.errors %}
+				<label><font style="font-size: 20px; color: #f45f5f">Fill all fields</font></label>
+				{% endif %}
 			</div>
-			<div class="form-group">
-				<input name="giver" type="text" class="form-control" placeholder="Name" style="width: 100%"/>
-			</div>
-			<div class="form-group">
-				<div class="input-group">
-					<span class="input-group-addon">₩</span>
-					<input name="money" type="number" size="16" class="form-control" placeholder="Price" style="width:84%"/>
+			<div class="col-md-8 form-col">
+				<div class="form-group">
+					<input name="receiver" type="text" class="form-control" placeholder="Name" style="width: 100%"/>
 				</div>
-			</div>
-			<div class="form-group">
-				<div class="input-group">
-					<textarea name="text" placeholder="Why did you owe money?" cols="26" style="width:87%"></textarea>
+				<div class="form-group">
+					<input name="giver" type="text" class="form-control" placeholder="Name" style="width: 100%"/>
 				</div>
+				<div class="form-group">
+					<div class="input-group">
+						<span class="input-group-addon">₩</span>
+						<input name="money" type="number" size="16" class="form-control" placeholder="Price" style="width:90%"/>
+					</div>
+				</div>
+				<div class="form-group">
+					<div class="input-group" style="color: black">
+						<textarea name="text" placeholder="Why did you owe money?" style="width:105%"></textarea>
+					</div>
+				</div>
+				<button type="submit" value="Submit" class="btn" style="font-size: 25px; margin-top: 5px; width: 92%">Submit</button>
 			</div>
-			<button type="submit" value="Submit" class="btn" style="font-size: 25px; margin-top: 5px; width: 87%">Submit</button>
-		</div>
-	</form>
+		</form>
+	</div>
 </div>
 
 {% endblock %}

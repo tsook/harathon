@@ -1,4 +1,36 @@
+{% extends 'finance/base.html' %}
+{% load staticfiles %}
+
 {% block content %}
+<div class="login-section" style="vertical-align: bottom;">
+  <form method="post" class="login-form row" id="signup-form">
+      {% csrf_token %}
+    <div class="col-md-4 login-col">
+      <label for="name"> Your Name: </label>
+      <label for="passwrd"> Password: </label>
+      <label for="passwrd_confirm"> Confirm: </label>
+      {% if form.errors %}
+      <label><font style="font-size: 25px; color: #f45f5f">ID already exists</font></label>
+      {% endif %}
+    </div>
+    <div class="col-md-5 login-col">
+      <div class="form-group">
+        <input type="text" class="form-control" name="username" placeholder="Name" style="font-size: 40px; width: 150%; height: 50px"/>
+      </div>
+      <div class="form-group">
+        <input type="text" class="form-control" name="password1" placeholder="Password" style="font-size: 40px; width: 150%; height: 50px"/>
+      </div>
+      <div class="form-group">
+        <input type="text" class="form-control" name="password2" placeholder="Password Again" style="font-size: 40px; width: 150%; height: 50px"/>
+      </div>
+      <div class="form-group">
+        <button type="submit" class="btn btn-primary" style="font-size: 25px; width: 150%">SignUp</a>
+      <div>
+    </div>
+  </form>
+</div>
+<!--
+<div style="text-align: left">
   <h2>Sign up</h2>
   <form method="post">
     {% csrf_token %}
@@ -16,4 +48,6 @@
     {% endfor %}
     <button type="submit">Sign up</button>
   </form>
+</div>
+-->
 {% endblock %}
