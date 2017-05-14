@@ -10,6 +10,27 @@ $(document).ready(function(){
 			more_info.data("hidden", true)
 		}
 	})
+
+	$(".delete-mark").on("click", function(e){
+   		e.stopPropagation();
+		if(confirm("Are you sure you want to delete this?")){
+			var parent = $(this).parent().parent()
+			var id = parent.data("id")
+			console.log(id)
+			$.ajax({
+				type: "GET",
+				url: 'delete',
+				data: {'id': id},
+	            beforeSend: function(xhr) {
+	                xhr.setRequestHeader("X-CSRFToken", '{{ csrf_token }}' );
+	            },
+	            success: function(data){
+	            	location.reload()
+	            }
+			})
+		}
+	})
+
 })
 
 function showForm(){

@@ -3,9 +3,10 @@ from django.utils import timezone
 from .models import Relation
 from .forms import loginForm
 from .forms import moneyForm
+from django.shortcuts import redirect
+from django.http import HttpResponse
 from django.contrib.auth import login, authenticate
 from django.contrib.auth.forms import UserCreationForm
-
 
 def home_page(request):
 	name=request.user.username
@@ -27,9 +28,14 @@ def new_Money(request):
 			form = moneyForm()
 	return render(request, 'finance/new_Money.html', {'form': form})
 
+def delete(request):
+	if request.GET:
+		Relation.objects.all().filter(pk=request.GET['id']).delete()
+		return HttpResponse('/completed/')
+
+
 def canvas_test(request):
 	return render(request, 'finance/canvas_test.html', {})
-
 
 def calculateBalance(getlist, paylist):
 	total = 0
