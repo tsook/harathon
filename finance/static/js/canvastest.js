@@ -52,9 +52,9 @@ function makeLine(from, to, type){
 	ctx.lineTo(dis*Math.cos(toAngle) + 300, dis*Math.sin(toAngle) + 200)
 	ctx.lineWidth = 5;
 	if(type == "give"){
-		ctx.strokeStyle = "#e54535"
+		ctx.strokeStyle = "#ff0000"
 	}else{
-		ctx.strokeStyle = "#48804d"
+		ctx.strokeStyle = "#1bad1b"
 	}
 	ctx.stroke();
 }
