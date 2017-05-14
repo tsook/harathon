@@ -81,7 +81,6 @@ def getNetBalanceList(data):
 		if result[key] == 0:
 			del result[key]
 
-	print(result)
 	return result
 
 def simplifyGraph(data):
@@ -89,8 +88,6 @@ def simplifyGraph(data):
 	while data:
 		key_max = max(data.keys(), key=(lambda k: data[k]))
 		key_min = min(data.keys(), key=(lambda k: data[k]))
-		print(key_max)
-		print(key_min)
 		if data[key_max] > abs(data[key_min]):
 			data[key_max] = data[key_max] + data[key_min]
 			Relation.objects.create(giver=key_min, receiver=key_max, money=abs(data[key_min]), text="Combined", time=timezone.now())
