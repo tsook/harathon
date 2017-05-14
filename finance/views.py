@@ -12,8 +12,6 @@ from django.core import serializers
 def home_page(request):
 	name=request.user.username
 	Alllist = Relation.objects.all()
-	simplifyGraph(getNetBalanceList(Alllist))
-	Allist = Relation.objects.all()
 	Getlist = Relation.objects.filter(receiver=name)
 	Paylist = Relation.objects.filter(giver=name)
 	return render(request, 'finance/home_page.html', {'UserData' : Alllist, 'Getlist' : Getlist, 'Paylist' : Paylist, 'balance' : calculateBalance(Getlist, Paylist), 'name': name})
@@ -64,6 +62,11 @@ def signup(request):
     else:
         form = UserCreationForm()
     return render(request, 'signup.html', {'form': form})
+
+def simplify(request):
+	Alllist = Relation.objects.all()
+	simplifyGraph(getNetBalanceList(Alllist))
+	return redirect('home_page')
 
 def getNetBalanceList(data):
 	result = {}

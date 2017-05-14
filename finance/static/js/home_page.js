@@ -40,6 +40,18 @@ $(document).ready(function(){
 			$("#change-view").data("status", "list")
 		}
 	})
+	$("#simplify").on("click", function(){
+		$.ajax({
+			type: "GET",
+			url: 'simplify',
+            beforeSend: function(xhr) {
+                xhr.setRequestHeader("X-CSRFToken", '{{ csrf_token }}' );
+            },
+            success: function(data){
+            	location.reload()
+            }
+		})
+	})
 
 })
 
