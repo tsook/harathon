@@ -246,3 +246,7 @@ body {
     margin-right: auto;
     display: block;	
 }
+#change-view{
+	text-align: middle;
+	width: 200px;
+}

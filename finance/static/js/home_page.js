@@ -29,8 +29,8 @@ $(document).ready(function(){
 			})
 		}
 	})
-	$("#change_view").on("click", function(){
-		if($("#change_view").data("status") == "list"){
+	$("#change-view").on("click", function(){
+		if($("#change-view").data("status") == "list"){
 			$("#all-debt").hide()
 			$("#graph-view").show()
 			$("#change-view").data("status", "graph")
