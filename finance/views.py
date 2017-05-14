@@ -7,7 +7,7 @@ from django.shortcuts import redirect
 from django.http import HttpResponse
 from django.contrib.auth import login, authenticate
 from django.contrib.auth.forms import UserCreationForm
-from operator import attrgetter
+from django.core import serializers
 
 def home_page(request):
 	name=request.user.username
@@ -36,9 +36,15 @@ def delete(request):
 		Relation.objects.all().filter(pk=request.GET['id']).delete()
 		return HttpResponse('/completed/')
 
+def get_list(request):
+	if request.GET:
+		name = request.user.username
+		json_data = serializers.serialize('json', Relation.objects.all());
+		return HttpResponse(json_data, content_type="application/json")
 
-def canvas_test(request):
-	return render(request, 'finance/canvas_test.html', {})
+def graph_view(request):
+	user_name = request.user.username
+	return render(request, 'finance/graph_view.html', {'user_name': user_name})
 
 def calculateBalance(getlist, paylist):
 	total = 0
@@ -62,47 +68,41 @@ def signup(request):
         form = UserCreationForm()
     return render(request, 'signup.html', {'form': form})
 
-
-class Person:
-	def __init__(self, name, balance, info):
-		self.name = name
-		self.balance = balance
-		self.info = info
-
 def getNetBalanceList(data):
 	result = {}
 	for entry in data:
 		if entry.giver in result:
-			result[entry.giver].balance -= entry.money
-			result[entry.giver].info += str(entry)
+			result[entry.giver] -= entry.money
 		else:
-			result[entry.giver] = Person(entry.giver, -1*entry.money, str(entry))
+			result[entry.giver] = -1*entry.money
 		if entry.receiver in result:
-			result[entry.receiver].balance += entry.money
-			result[entry.receiver].info += str(entry) 
+			result[entry.receiver] += entry.money
 		else:
-			result[entry.receiver] = Person(entry.receiver, entry.money, str(entry))
+			result[entry.receiver] = entry.money
 
 	for key in result.keys():
-		if result[key].balance == 0:
+		if result[key] == 0:
 			del result[key]
+
+	print(result)
 	return result
 
 def simplifyGraph(data):
-	data = list(data.values())
 	Relation.objects.all().delete()
 	while data:
-		obj_max = max(data, key=attrgetter('balance'))
-		obj_min = min(data, key=attrgetter('balance'))
-		if obj_max.balance > abs(obj_min.balance):
-			obj_max.balance = obj_max.balance + obj_min.balance
-			Relation.objects.create(giver=obj_min.name, receiver=obj_max.name, money=abs(obj_min.balance), text="Combined: " + obj_min.info + " and " + obj_max.info, time=timezone.now())
-			data.remove(obj_min)
-		elif abs(obj_min.balance) > obj_max.balance:
-			obj_min.balance = obj_max.balance + obj_min.balance
-			Relation.objects.create(giver=obj_min.name, receiver=obj_max.name, money=obj_max.balance, text="Combined: " + obj_min.info + " and " + obj_max.info, time=timezone.now())
-			data.remove(obj_max)
+		key_max = max(data.keys(), key=(lambda k: data[k]))
+		key_min = min(data.keys(), key=(lambda k: data[k]))
+		print(key_max)
+		print(key_min)
+		if data[key_max] > abs(data[key_min]):
+			data[key_max] = data[key_max] + data[key_min]
+			Relation.objects.create(giver=key_min, receiver=key_max, money=abs(data[key_min]), text="Combined", time=timezone.now())
+			del data[key_min]
+		elif abs(data[key_min]) > data[key_max]:
+			data[key_min] = data[key_max] + data[key_min]
+			Relation.objects.create(giver=key_min, receiver=key_max, money=data[key_max], text="Combined", time=timezone.now())
+			del data[key_max]
 		else:
-			Relation.objects.create(giver=obj_min.name, receiver=obj_max.name, money=obj_max.balance, text="Combined: " + obj_min.info + " and " + obj_max.info, time=timezone.now())
-			data.remove(obj_max)
-			data.remove(obj_min)
+			Relation.objects.create(giver=key_min, receiver=key_max, money=data[key_max], text="Combined", time=timezone.now())
+			del data[key_max]
+			del data[key_min]

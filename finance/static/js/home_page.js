@@ -16,7 +16,6 @@ $(document).ready(function(){
 		if(confirm("Are you sure you want to delete this?")){
 			var parent = $(this).parent().parent()
 			var id = parent.data("id")
-			console.log(id)
 			$.ajax({
 				type: "GET",
 				url: 'delete',
