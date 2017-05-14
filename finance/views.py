@@ -17,6 +17,7 @@ def home_page(request):
 
 def new_Money(request):
 	form = moneyForm()
+	name=request.user.username
 	if request.method == "POST":
 		form = moneyForm(request.POST)
 		if form.is_valid():
@@ -26,7 +27,7 @@ def new_Money(request):
 			return redirect('home_page')
 		else:
 			form = moneyForm()
-	return render(request, 'finance/new_Money.html', {'form': form})
+	return render(request, 'finance/new_Money.html', {'form': form, 'name': name})
 
 def delete(request):
 	if request.GET:
@@ -54,7 +55,7 @@ def signup(request):
             raw_password = form.cleaned_data.get('password1')
             user = authenticate(username=username, password=raw_password)
             login(request, user)
-            return redirect('login_page')
+            return redirect('login')
     else:
         form = UserCreationForm()
     return render(request, 'signup.html', {'form': form})

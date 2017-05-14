@@ -10,11 +10,10 @@
 <body>
 	<ul class="navbar">
 		<div class="container">
-			<li> <a href="{% url 'login' %}"> GiveGet <i class="fa fa-money" aria-hidden="true"></i></a></li>
-			<li> <a href="{% url 'new_Money' %}"> New Money </a></li>
+			<li> <a href="{% url 'home_page' %}"> GiveGet <i class="fa fa-money" aria-hidden="true"></i></a></li>
+			<li style="float: right"> <a id="about" href="#"> About </a></li>
 			{% block header %}
 			{% endblock %}
-			<li> <a id="about" href="#"> About </a></li>
 		</div>
 	</ul>
 	<div class="popup">
