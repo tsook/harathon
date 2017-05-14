@@ -2,13 +2,14 @@
 {% load staticfiles %}
 
 {% block header %}
+<li> <a href="{% url 'home_page' %}"> GiveGet <i class="fa fa-money" aria-hidden="true"></i></a></li>
 <li> <a href="{% url 'new_Money' %}"> New Money </a></li>
 <li style="float: right"><a href="{% url 'logout' %}"> Logout: {{ name }}</a></li>
 {% endblock %}
 
 {% block content %}
 <div class="balance-section">
-	<h1 style="font-size: 20px; color: #333"> Net Balance </h1>
+	<h1 style="color: #333"> Net Balance </h1>
 	<div style="border-top: solid 1px #d8d8d8">
 	{% if balance < 0 %}
 		<h1 style="color: red; font-size: 60px"> ₩{{ balance }}</h1>

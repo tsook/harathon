@@ -1,6 +1,10 @@
 {% extends 'finance/base.html' %}
 {% load staticfiles %}
 
+{% block header %}
+<li> <a> GiveGet <i class="fa fa-money" aria-hidden="true"></i></a></li>
+{% endblock %}
+
 {% block content %}
 <div class="login-section" style="vertical-align: bottom;">
   <form method="post" class="login-form row" id="signup-form">
@@ -24,7 +28,12 @@
         <input type="text" class="form-control" name="password2" placeholder="Password Again" style="font-size: 40px; width: 150%; height: 50px"/>
       </div>
       <div class="form-group">
-        <button type="submit" class="btn btn-primary" style="font-size: 25px; width: 150%">SignUp</a>
+        <table width="150%">
+        <tr>
+          <td width="50%"><button type="submit" class="btn btn-primary" style="font-size: 25px; width: 100%">SignUp</a></td>
+          <td width="50%"><a href="{% url 'login' %}" class="btn btn-primary" style="font-size: 25px; width: 100%">Cancel</a></td>
+        </tr>
+        </table>
       <div>
     </div>
   </form>

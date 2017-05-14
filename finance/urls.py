@@ -8,7 +8,6 @@ urlpatterns = [
 	url(r'^home/$', views.home_page, name='home_page'),
 	url(r'^new/Money/$', views.new_Money, name='new_Money'),
 	url(r'^canvas/$', views.canvas_test, name='canvas_test'),
-	#url(r'^login/$', auth_views.login, {'template_name': 'finance/login_page.html'}, name='login'),
 	url(r'^accounts/profile/$', views.home_page, name='home_page'),
 	url(r'^delete/', views.delete, name="delete"),
 	url(r'^login/$', auth_views.login, name='login'),
